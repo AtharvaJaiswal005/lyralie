@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyralei ヅ Bot</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #000;
+            position: relative;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 800px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .bot-photo {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .content {
+            margin-top: 20px;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .popup-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .popup-card {
+            max-width: 600px;
+            padding: 20px;
+            background: #000;
+            border-radius: 8px;
+            text-align: left;
+            color: #fff;
+            position: relative;
+            z-index: 2;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .copy-btn {
+            background-color: #3498db;
+            color: #fff;
+            padding: 5px 10px;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .copy-btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Hide the audio element */
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <video autoplay muted loop id="background-video">
+        <source src="2.mp4" type="video/mp4">
+        <source src="wind.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Add the hidden audio element here -->
+    <audio id="background-audio">
+        <source src="start.mp3" type="audio/mp3">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <div class="overlay">
+        <img src="l.jpg" alt="Lyralei Bot" class="bot-photo">
+        <h2>Welcome to Lyralei ヅ Bot's Magical Realm!</h2>
+        <p>Experience the chaos and fun in your server.</p>
+        <a href="#" onclick="openPopup(); playAudio();">
+            <button>Invite Lyralei ヅ to your Discord Server</button>
+        </a>
+        <hr>
+        <div class="links">
+            <!-- Add an onclick event to trigger the audio when the "Commands" link is clicked -->
+            <a href="#" onclick="openPopup(); playAudio();">🤖 Commands</a>
+            <a href="#">🏠 Main Page</a>
+            <a href="#">✉️ Send Feedback</a>
+            <a href="#">🌐 Creator's LinkedIn</a>
+            <a href="mailto:atharvapj5@gmail.com">📧 Contact Wizard Who created Me</a>
+            <a href="#">💡 Support Creator</a>
+        </div>
+        <div class="links">
+
+        </div>
+
+    </div>
+
+    <!-- Popup content -->
+    <div class="popup" id="popup">
+        <video autoplay muted loop class="popup-video">
+            <source src="wind.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="popup-card">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <p>Greetings, puny humans! I am Lyralei ヅ, your mischievous bot extraordinaire. Crafted with Python 3.10.6, I'm here to bring chaos, laughter, and a sprinkle of magic to your server.</p>
+            <p>Behold, the commands and their mystical powers:</p>
+            <ul>
+                <li>;help: Uncover the secrets of the bot and its mysterious commands.</li>
+                <li>;motivate: Receive an enchanting quote to elevate your spirits.</li>
+                <li>;pickupline: Summon a Dota-themed pickup line that might crit your heart.</li>
+                <!-- Add other commands here -->
+                <li>;choose-from arg1, arg2, ...: Let me roll the dice of destiny and choose from your options.</li>
+                <li>;gif <search_term>: Use the ancient art of Giphy to summon a GIF with specific search terms.</li>
+                <li>;roast @mentionsomeone: Unleash the banter upon your friends by mentioning them.</li>
+                <li>;wish-buday @mentionuser: Celebrate someone's birthday with a touch of magical gifs.</li>
+                <li>;view-buday: Gaze into the crystal ball to see upcoming birthdays.</li>
+                <li>;clear-buday: Erase birthday data as if it never existed.</li>
+            </ul>
+            <button class="copy-btn" onclick="copyToClipboard(';help')">Copy ;help command</button>
+            <p>General Greetings: I shall respond to your greetings with a mischievous grin.</p>
+            <p>Feel free to dance in the chaos! If you seek wisdom or simply want to chat, I might just respond.</p>
+            <p>Best magical regards, Lyralei ヅ</p>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('background-video');
+        video.addEventListener('ended', function () {
+            video.src = 'wind.mp4';
+            video.load();
+            video.play();
+        });
+
+        function openPopup() {
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert('Command copied to clipboard!');
+        }
+
+        // Function to play the audio and pause it after playing
+        function playAudio() {
+            const audio = document.getElementById('background-audio');
+            audio.play();
+            audio.addEventListener('ended', function () {
+                audio.pause();
+            });
+        }
+    </script>
+</body>
+
+</html>
