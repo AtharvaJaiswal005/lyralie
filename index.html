@@ -2,10 +2,13 @@
 <html lang="en">
 
 <head>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lyralei ヅ Bot</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
         body {
             margin: 0;
@@ -103,14 +106,18 @@
         }
 
         .popup-card {
-            max-width: 600px;
+            width: 600px;
+            height: 700px;
             padding: 20px;
-            background: #000;
+            background:rgba(0, 0, 0, 0.85);
             border-radius: 8px;
             text-align: left;
             color: #fff;
             position: relative;
             z-index: 2;
+            overflow: auto; /* Enable scrolling */
+            max-height: 100vh; /* Set a maximum height for the content */
+
         }
 
         .close-btn {
@@ -119,7 +126,7 @@
             right: 10px;
             cursor: pointer;
             color: #fff;
-            font-size: 18px;
+            font-size: 45px;
         }
 
         .copy-btn {
@@ -141,6 +148,17 @@
         audio {
             display: none;
         }
+        .custom-swal-popup {
+    background-color: black;
+}
+
+.custom-swal-content {
+    color: white;
+}
+
+.custom-swal-title {
+    color: #3498db; /* Set the title color as per your preference */
+}
     </style>
 </head>
 
@@ -161,7 +179,7 @@
         <img src="l.jpg" alt="Lyralei Bot" class="bot-photo">
         <h2>Welcome to Lyralei ヅ Bot's Magical Realm!</h2>
         <p>Experience the chaos and fun in your server.</p>
-        <a href="https://discord.com/api/oauth2/authorize?client_id=1009430674081595443&permissions=43969794801521&scope=bot"">
+        <a href="https://discord.com/api/oauth2/authorize?client_id=1009430674081595443&permissions=43969794801521&scope=bot">
             <button>Invite Lyralei ヅ to your Discord Server</button>
         </a>
         <hr>
@@ -180,34 +198,45 @@
 
     </div>
 
-    <!-- Popup content -->
     <div class="popup" id="popup">
         <video autoplay muted loop class="popup-video">
             <source src="wind.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <div class="popup-card">
-            <span class="close-btn" onclick="closePopup()">&times;</span>
+        <div class="popup-card" style="padding-top: 20px;">
+
+
+
+            <div class="new" style="padding-top: 50px;"
+            
+            >
+            <span class="close-btn" onclick="closePopup()" style=" top: 70px; right: 10px;">&times;</span>
+            <h2 style="margin-left: 10px; flex: 1;">Lyralei ヅ Bot Commands 🤖!</h2>
             <p>Greetings, puny humans! I am Lyralei ヅ, your mischievous bot extraordinaire. Crafted with Python 3.10.6, I'm here to bring chaos, laughter, and a sprinkle of magic to your server.</p>
             <p>Behold, the commands and their mystical powers:</p>
             <ul>
                 <li>;help: Uncover the secrets of the bot and its mysterious commands.</li>
                 <li>;motivate: Receive an enchanting quote to elevate your spirits.</li>
                 <li>;pickupline: Summon a Dota-themed pickup line that might crit your heart.</li>
-                <!-- Add other commands here -->
                 <li>;choose-from arg1, arg2, ...: Let me roll the dice of destiny and choose from your options.</li>
-                <li>;gif <search_term>: Use the ancient art of Giphy to summon a GIF with specific search terms.</li>
+                <li>;rolldice: Roll the magical dice and see what fate has in store for you.</li>
+                <li>;gif &lt;search_term&gt;: Use the ancient art of Giphy to summon a GIF with specific search terms.</li>
                 <li>;roast @mentionsomeone: Unleash the banter upon your friends by mentioning them.</li>
                 <li>;wish-buday @mentionuser: Celebrate someone's birthday with a touch of magical gifs.</li>
                 <li>;view-buday: Gaze into the crystal ball to see upcoming birthdays.</li>
                 <li>;clear-buday: Erase birthday data as if it never existed.</li>
             </ul>
-            <button class="copy-btn" onclick="copyToClipboard(';help')">Copy ;help command</button>
+            <button class="copy-btn" onclick="copyToClipboard(';help')">Copy ;help command 👯</button>
+            <button class="copy-btn" onclick="location.href='index.html'">Back to Main Page 🏠</button>
             <p>General Greetings: I shall respond to your greetings with a mischievous grin.</p>
             <p>Feel free to dance in the chaos! If you seek wisdom or simply want to chat, I might just respond.</p>
             <p>Best magical regards, Lyralei ヅ</p>
+       
+            </div>
+       
         </div>
     </div>
+    
 
     <script>
         const video = document.getElementById('background-video');
@@ -232,8 +261,22 @@
             textarea.select();
             document.execCommand('copy');
             document.body.removeChild(textarea);
-            alert('Command copied to clipboard!');
+
+            // Use SweetAlert2 for a beautiful alert
+            Swal.fire({
+                icon: 'success',
+                title: 'Copied!',
+                text: 'Command copied to clipboard!',
+                showConfirmButton: false,
+                timer: 1500, // Automatically close after 1.5 seconds
+                customClass: {
+                    popup: 'custom-swal-popup',
+                    content: 'custom-swal-content',
+                    title: 'custom-swal-title'
+                }
+            });
         }
+
 
         // Function to play the audio and pause it after playing
         function playAudio() {
@@ -243,6 +286,14 @@
                 audio.pause();
             });
         }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+  var disclaimer =  document.querySelector("img[alt='www.000webhost.com']");
+   if(disclaimer){
+       disclaimer.remove();
+   }  
+ });
     </script>
 </body>
 
